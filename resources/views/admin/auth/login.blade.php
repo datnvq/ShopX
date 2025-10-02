@@ -42,12 +42,12 @@
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                    <form action="{{ route('admin.login') }}" method="POST" autocomplete="off" novalidate>
+                    <form action="{{ route('admin.login') }}" method="POST" novalidate>
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" name="email" :value="old('email')" class="form-control"
-                                placeholder="your@email.com" autocomplete="off" />
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control"
+                                placeholder="your@email.com" autocomplete="username" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
