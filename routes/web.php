@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,8 +8,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('frontend.dashboard.main.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+});
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard.index');
